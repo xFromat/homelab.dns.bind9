@@ -1,0 +1,3 @@
+BIND_VERSION=latest
+BIND_USER=userX
+MAIN_DIR=./bind9

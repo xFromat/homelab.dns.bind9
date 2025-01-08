@@ -1,0 +1,22 @@
+; base zone file for example.com
+$TTL 2d    ; default TTL for zone
+$ORIGIN my-doamin.tld. ; base domain-name
+
+; Start of Authority RR defining the key characteristics of the zone (domain)
+@         	IN      SOA   ns.my-domain.tld. info.my-domain.tld. (
+                                2024120420   ; serial number
+                                12h          ; refresh
+                                15m          ; update retry
+                                4d           ; expiry
+                                2h           ; minimum
+                                )
+
+; name server RR for the domain
+          	IN      NS      ns.my-domain.tld.
+ns        	IN      A       192.168.1.2
+
+; A Records
+subdomain-1     IN      A       192.168.1.2
+
+; aliases (CNAME) to an external domain
+

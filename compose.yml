@@ -1,0 +1,25 @@
+---
+services:
+  dns-bind9:
+    image: docker.io/ubuntu/bind9:${BIND_VERSION}
+    container_name: dns-bind9
+    environment:
+      - BIND9_USER=${BIND_USER}
+      - TZ=Europe/Warsaw
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    volumes:
+      - $MAIN_DIR/config:/etc/bind
+      - $MAIN_DIR/cache:/var/cache/bind
+      - $MAIN_DIR/records:/var/lib/bind
+      - $MAIN_DIR/run:/run/named
+    restart: unless-stopped
+    networks:
+      rproxy:
+        ipv4_address: 10.0.0.2
+
+networks:
+  rproxy:
+    external: true
+
